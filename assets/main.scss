@@ -1,0 +1,49 @@
+body {
+  min-height: 200vh;
+}
+
+img {
+  max-width: 100%;
+}
+
+@for $i from 12 through 90 {
+	.fs-#{$i},
+	*.fs-#{$i} {
+		font-size: #{$i}px !important;
+	}
+}
+
+@media screen and (min-width: 600px) {
+  @for $i from 12 through 90 {
+    .fs-md-#{$i},
+    *.fs-md-#{$i} {
+      font-size: #{$i}px !important;
+    }
+  }
+}
+
+@media screen and (min-width: 960px) {
+  @for $i from 12 through 130 {
+    .fs-lg-#{$i},
+    *.fs-lg-#{$i} {
+      font-size: #{$i}px !important;
+    }
+  }
+}
+
+@media screen and (min-width: 1264px) {
+  @for $i from 12 through 130 {
+    .fs-xl-#{$i},
+    *.fs-xl-#{$i} {
+      font-size: #{$i}px !important;
+    }
+	}
+}
+
+.v-btn {
+  &:hover {
+    background: #333;
+    border-color: #333;
+    color: #fff!important;
+  }
+}
