@@ -4,7 +4,7 @@
       <v-row>
         <template v-for="(item, i) in categories">
           <v-col :key="`category-${i}`" :md="item.full == true ? '12' : '6'">
-            <ProductItem :title="item.title" :sluc="item.slug" :full="item.full" :img="item.img" />
+            <CategoryItem :title="item.title" :sluc="item.slug" :full="item.full" :img="item.img" />
           </v-col>
         </template>
       </v-row>
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import ProductItem from '@/components/ProductItem'
+import CategoryItem from '@/components/CategoryItem'
 import Promotion from '@/components/Promotion'
 import KnowMore from '@/components/KnowMore'
 
 export default {
   name: 'Home',
   components: {
-    ProductItem,
+    CategoryItem,
     Promotion,
     KnowMore
   },

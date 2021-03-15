@@ -13,7 +13,7 @@
       <ul v-if="menus.length > 0" class="menu-nav">
         <template v-for="(menu, i) in menus">
           <li :key="`menu-${i}`">
-            <v-btn color="transparent" tile depressed max-height="40"> {{ menu.title }} </v-btn>
+            <v-btn :to="`/${menu.slug}`" color="transparent" tile depressed max-height="40"> {{ menu.title }} </v-btn>
 
             <!-- Mega menu -->
             <template v-if="menu.categories || menu.campaigns || menu.more">

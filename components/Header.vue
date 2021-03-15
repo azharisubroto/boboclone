@@ -3,7 +3,7 @@
     <v-container fluid class="topline">
       <v-row no-gutters>
         <v-col md="12">
-          <div class="text-center">FREE SHIPPING OVER 150 EUR</div>
+          <div class="text-center fs-12">FREE SHIPPING OVER 150 EUR</div>
         </v-col>
       </v-row>
     </v-container>
@@ -31,12 +31,20 @@
               ></v-text-field>
             </v-col>
             <v-col md="3">
-              <v-btn icon>
-                <v-icon>mdi-account-outline</v-icon>
-              </v-btn>
-              <v-btn icon>
-                <v-icon>mdi-shopping-outline</v-icon>
-              </v-btn>
+              <div class="d-flex justify-content-end text-center fs-12">
+                <div>
+                  <v-btn icon>
+                    <v-icon>mdi-account-outline</v-icon>
+                  </v-btn>
+                  <div class="mt-0">Login</div>
+                </div>
+                <div>
+                  <v-btn icon>
+                    <v-icon>mdi-shopping-outline</v-icon>
+                  </v-btn>
+                  <div class="mt-0">Bag</div>
+                </div>
+              </div>
             </v-col>
           </v-row>
         </v-col>
