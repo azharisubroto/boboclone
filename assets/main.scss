@@ -47,3 +47,9 @@ img {
     color: #fff!important;
   }
 }
+
+a{
+  &:hover {
+    opacity: .7;
+  }
+}
