@@ -1,10 +1,19 @@
 <template>
   <main>
-    <section>
+    <section style="position: relative; z-index: 111">
       <v-container fluid class="text-capitalize">
-        <v-row no-gutters>
-          <v-col lg="12">
+        <v-row no-gutters align-lg="center" justify-lg="space-between">
+          <v-col lg="6">
             <v-breadcrumbs class="px-0 py-0" :items="breadcrumbs" divider="|"></v-breadcrumbs>
+          </v-col>
+
+          <v-col lg="2">
+            <v-select
+              v-model="sortby"
+              :items="['Popularity', 'Best Sellers', 'Most Viewed', 'Price - Low to High', 'Price - High to Low']"
+              placeholder="Sort items"
+              hide-details
+            ></v-select>
           </v-col>
         </v-row>
       </v-container>
@@ -15,43 +24,12 @@
         <v-row>
           <template v-for="index in 16">
             <v-col :key="`product-${index}`" lg="3">
-              <div class="product-item">
-                <nuxt-link :to="`/${$route.params.category}/product-${index}`">
-                  <v-card tile elevation="0">
-                    <v-img
-                      cover
-                      src="https://www.bobochoses.com/media/catalog/product/cache/74597d227604c47a8b641ae794922d30/1/2/121ac149_1.jpg"
-                      :aspect-ratio="3.5 / 4"
-                    >
-                    </v-img>
-                    <div class="peek">
-                      <v-img
-                        cover
-                        src="https://www.bobochoses.com/media/catalog/product/1/2/121ac149_6.jpg"
-                        :aspect-ratio="3.5 / 4"
-                      >
-                      </v-img>
-                    </div>
-
-                    <div class="variants">
-                      <div>2/3Y</div>
-                      <div>4/5Y</div>
-                      <div>6/7Y</div>
-                      <div>8/9Y</div>
-                      <div>10/11Y</div>
-                    </div>
-                  </v-card>
-                </nuxt-link>
-
-                <div class="text-center mt-3">
-                  <h2 class="fs-14">
-                    <nuxt-link :to="`/${$route.params.category}/product-${index}`">
-                      Product Item {{ index }}
-                    </nuxt-link>
-                  </h2>
-                  <p class="price fs-16">€69.00</p>
-                </div>
-              </div>
+              <ProductCard
+                :link="`/${$route.params.category}/product-${index}`"
+                :price="69.0"
+                img1="https://www.bobochoses.com/media/catalog/product/cache/74597d227604c47a8b641ae794922d30/1/2/121ac149_1.jpg"
+                img2="https://www.bobochoses.com/media/catalog/product/1/2/121ac149_6.jpg"
+              />
             </v-col>
           </template>
         </v-row>
@@ -61,8 +39,13 @@
 </template>
 
 <script>
+import ProductCard from '@/components/ProductCard'
+
 export default {
   name: 'CategoryIndex',
+  components: {
+    ProductCard
+  },
   data() {
     return {
       breadcrumbs: [
@@ -76,7 +59,8 @@ export default {
           disabled: true,
           href: `/${this.$route.params.category}`
         }
-      ]
+      ],
+      sortby: 'Popularity'
     }
   },
   head() {
