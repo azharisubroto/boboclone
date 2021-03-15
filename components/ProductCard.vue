@@ -21,7 +21,7 @@
       <h2 class="fs-14">
         <nuxt-link :to="link"> {{ name }} </nuxt-link>
       </h2>
-      <p class="price fs-16">Rp {{ price }}</p>
+      <p class="price fs-16">Rp {{ Number(price).toLocaleString() }}</p>
     </div>
   </div>
 </template>
