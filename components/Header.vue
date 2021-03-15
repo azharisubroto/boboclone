@@ -18,7 +18,7 @@
           </div>
         </v-col>
         <v-col lg="4">
-          <v-row justify-md="space-between" align-md="center">
+          <v-row justify-lg="end" align-md="center">
             <v-col md="8">
               <v-text-field
                 prepend-inner-icon="mdi-magnify"
@@ -30,7 +30,7 @@
                 solo
               ></v-text-field>
             </v-col>
-            <v-col md="4">
+            <v-col md="3">
               <v-btn icon>
                 <v-icon>mdi-account-outline</v-icon>
               </v-btn>

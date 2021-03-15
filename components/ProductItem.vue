@@ -4,7 +4,7 @@
       <template #default>
         <v-row class="fill-height ma-0" :align="full == true ? 'end' : 'center'" justify="center">
           <div :class="[full == true ? 'pb-md-10 mb-md-10' : '']">
-            <v-btn color="#fff" x-large class="mb-10">SHOP {{ title }}</v-btn>
+            <v-btn x-large class="shopbtn mb-10">SHOP {{ title }}</v-btn>
           </div>
         </v-row>
       </template>
@@ -31,3 +31,16 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.shopbtn:not(.v-btn--icon) {
+  &:hover {
+    &:before {
+      background-color: #333 !important;
+      opacity: 1;
+    }
+    border-color: #333;
+    color: #fff !important;
+  }
+}
+</style>

@@ -16,7 +16,72 @@
             <v-btn color="transparent" tile depressed max-height="40"> {{ menu.title }} </v-btn>
 
             <!-- Mega menu -->
-            <div class="mega-menu"></div>
+            <template v-if="menu.categories || menu.campaigns || menu.more">
+              <div class="mega-menu">
+                <v-row>
+                  <v-col lg="10">
+                    <v-row>
+                      <!-- CATEGORIES -->
+                      <v-col lg="4">
+                        <template v-if="menu.categories && menu.categories.length > 0">
+                          <h5 class="fs-16 mb-3"><strong>Categories</strong></h5>
+
+                          <ul>
+                            <li
+                              v-for="(category, j) in menu.categories"
+                              :key="`cat-${j}-${category.title}`"
+                              class="mb-2"
+                            >
+                              <nuxt-link :to="`/${menu.slug}/${category.slug}`">{{ category.title }}</nuxt-link>
+                            </li>
+                          </ul>
+                        </template>
+                      </v-col>
+
+                      <!-- CAMPAIGNS -->
+                      <v-col lg="4">
+                        <template v-if="menu.campaigns && menu.campaigns.length > 0">
+                          <h5 class="fs-16 mb-3"><strong>Campaign</strong></h5>
+
+                          <ul>
+                            <li
+                              v-for="(campaign, j) in menu.campaigns"
+                              :key="`camp-${j}-${campaign.title}`"
+                              class="mb-2"
+                            >
+                              <nuxt-link :to="`/${menu.slug}/${campaign.slug}`">{{ campaign.title }}</nuxt-link>
+                            </li>
+                          </ul>
+                        </template>
+                      </v-col>
+
+                      <!-- MORE -->
+                      <v-col lg="4">
+                        <template v-if="menu.more && menu.more.length > 0">
+                          <h5 class="fs-16 mb-3"><strong>More</strong></h5>
+
+                          <ul>
+                            <li v-for="(more, j) in menu.more" :key="`more-${j}-${more.title}`" class="mb-2">
+                              <nuxt-link :to="`/${menu.slug}/${more.slug}`">{{ more.title }}</nuxt-link>
+                            </li>
+                          </ul>
+                        </template>
+                      </v-col>
+                    </v-row>
+                  </v-col>
+                  <v-col lg="2">
+                    <div v-if="menu.thumbnail" class="text-center">
+                      <v-card tile elevation="0">
+                        <v-img :src="menu.thumbnail" :aspect-ratio="1"> </v-img>
+                      </v-card>
+                      <div class="mt-3">
+                        {{ menu.title }}
+                      </div>
+                    </div>
+                  </v-col>
+                </v-row>
+              </div>
+            </template>
           </li>
         </template>
       </ul>
@@ -70,6 +135,7 @@ export default {
         {
           title: 'New Arrivals',
           slug: 'new-arrivals',
+          thumbnail: 'https://www.bobochoses.com/media/wysiwyg/Miniatura-categoria-drop2.jpg',
           categories: [
             {
               title: 'Kid',
@@ -91,37 +157,408 @@ export default {
         },
         {
           title: 'Kid',
-          slug: 'kid'
+          slug: 'kid',
+          thumbnail: 'https://www.bobochoses.com/media/wysiwyg/Miniatura-ss21-kid.jpg',
+          categories: [
+            {
+              title: 'T-shirts',
+              slug: '#'
+            },
+            {
+              title: 'Sweatshirts',
+              slug: '#'
+            },
+            {
+              title: 'Trousers',
+              slug: '#'
+            },
+            {
+              title: 'Skirts',
+              slug: '#'
+            },
+            {
+              title: 'Dresses',
+              slug: '#'
+            },
+            {
+              title: 'Jumpers & Cardigans',
+              slug: '#'
+            },
+            {
+              title: 'Overall',
+              slug: '#'
+            },
+            {
+              title: 'Outerwear',
+              slug: '#'
+            },
+            {
+              title: 'Footwear',
+              slug: '#'
+            },
+            {
+              title: 'Playsuit',
+              slug: '#'
+            },
+            {
+              title: 'Swimwear & Summer',
+              slug: '#'
+            },
+            {
+              title: 'Online Exclusive',
+              slug: '#'
+            }
+          ],
+          campaigns: [
+            {
+              title: 'SS21',
+              slug: '#'
+            }
+          ],
+          more: [
+            {
+              title: 'Ten Years Young Exclusive',
+              slug: '#'
+            },
+            {
+              title: 'Bobo in the hood',
+              slug: '#'
+            },
+            {
+              title: 'Bobo x Smallable',
+              slug: '#'
+            },
+            {
+              title: 'Online Exclusive',
+              slug: '#'
+            }
+          ]
         },
         {
           title: 'Baby',
-          slug: 'baby'
+          slug: 'baby',
+          thumbnail: 'https://www.bobochoses.com/media/wysiwyg/Miniatura-ss21-baby.jpg',
+          categories: [
+            {
+              title: 'T-shirts',
+              slug: '#'
+            },
+            {
+              title: 'Sweatshirts',
+              slug: '#'
+            },
+            {
+              title: 'Bodies',
+              slug: '#'
+            },
+            {
+              title: 'Dresses',
+              slug: '#'
+            },
+            {
+              title: 'Trousers',
+              slug: '#'
+            },
+            {
+              title: 'Swimwear & Summer',
+              slug: '#'
+            },
+            {
+              title: 'Jumpers & Cardigans',
+              slug: '#'
+            },
+            {
+              title: 'Overall',
+              slug: '#'
+            },
+            {
+              title: 'Baby gift sets',
+              slug: '#'
+            },
+            {
+              title: 'Playsuit',
+              slug: '#'
+            },
+            {
+              title: 'Online Exclusive',
+              slug: '#'
+            },
+            {
+              title: 'Swimwear',
+              slug: '#'
+            }
+          ],
+          campaigns: [
+            {
+              title: 'SS21',
+              slug: '#'
+            }
+          ],
+          more: [
+            {
+              title: 'Bobo in the Hood',
+              slug: '#'
+            },
+            {
+              title: 'Online Exclusive',
+              slug: '#'
+            }
+          ]
         },
         {
           title: 'Woman',
-          slug: 'woman'
+          slug: 'woman',
+          thumbnail: 'https://www.bobochoses.com/media/wysiwyg/Miniatura-ss21-woman.jpg',
+          categories: [
+            {
+              title: 'T-shirts',
+              slug: '#'
+            },
+            {
+              title: 'Sweatshirts',
+              slug: '#'
+            },
+            {
+              title: 'Dresses',
+              slug: '#'
+            },
+            {
+              title: 'Jumpers & Cardigans',
+              slug: '#'
+            },
+            {
+              title: 'Overall',
+              slug: '#'
+            },
+            {
+              title: 'Skirts',
+              slug: '#'
+            },
+            {
+              title: 'Trousers',
+              slug: '#'
+            },
+            {
+              title: 'Outwear',
+              slug: '#'
+            },
+            {
+              title: 'Swimwear',
+              slug: '#'
+            },
+            {
+              title: 'Shoes',
+              slug: '#'
+            },
+            {
+              title: 'Accesories',
+              slug: '#'
+            },
+            {
+              title: 'Face masks',
+              slug: '#'
+            }
+          ],
+          campaigns: [
+            {
+              title: 'SS21',
+              slug: '#'
+            }
+          ],
+          more: [
+            {
+              title: 'Ten Years Young Exclusive',
+              slug: '#'
+            },
+            {
+              title: 'Bobo Choses & Novesta',
+              slug: '#'
+            },
+            {
+              title: 'Bobo in the Hood',
+              slug: '#'
+            }
+          ]
         },
         {
           title: 'Man',
-          slug: 'man'
+          slug: 'man',
+          thumbnail: 'https://www.bobochoses.com/media/wysiwyg/Miniatura-ss21-man.jpg',
+          categories: [
+            {
+              title: 'T-shirts',
+              slug: '#'
+            },
+            {
+              title: 'Sweatshirts',
+              slug: '#'
+            },
+            {
+              title: 'Dresses',
+              slug: '#'
+            },
+            {
+              title: 'Jumpers & Cardigans',
+              slug: '#'
+            },
+            {
+              title: 'Overall',
+              slug: '#'
+            },
+            {
+              title: 'Skirts',
+              slug: '#'
+            },
+            {
+              title: 'Trousers',
+              slug: '#'
+            },
+            {
+              title: 'Outwear',
+              slug: '#'
+            },
+            {
+              title: 'Swimwear',
+              slug: '#'
+            },
+            {
+              title: 'Shoes',
+              slug: '#'
+            },
+            {
+              title: 'Accesories',
+              slug: '#'
+            },
+            {
+              title: 'Face masks',
+              slug: '#'
+            }
+          ],
+          campaigns: [
+            {
+              title: 'SS21',
+              slug: '#'
+            }
+          ],
+          more: [
+            {
+              title: 'Ten Years Young Exclusive',
+              slug: '#'
+            },
+            {
+              title: 'Bobo Choses & Novesta',
+              slug: '#'
+            },
+            {
+              title: 'Bobo in the Hood',
+              slug: '#'
+            }
+          ]
         },
         {
           title: 'Accessories',
-          slug: 'accessories'
+          slug: 'accessories',
+          thumbnail: 'https://www.bobochoses.com/media/wysiwyg/Miniatura-ss21-acc.jpg',
+          categories: [
+            {
+              title: 'T-shirts',
+              slug: '#'
+            },
+            {
+              title: 'Sweatshirts',
+              slug: '#'
+            },
+            {
+              title: 'Dresses',
+              slug: '#'
+            },
+            {
+              title: 'Jumpers & Cardigans',
+              slug: '#'
+            },
+            {
+              title: 'Overall',
+              slug: '#'
+            },
+            {
+              title: 'Skirts',
+              slug: '#'
+            },
+            {
+              title: 'Trousers',
+              slug: '#'
+            },
+            {
+              title: 'Outwear',
+              slug: '#'
+            },
+            {
+              title: 'Swimwear',
+              slug: '#'
+            },
+            {
+              title: 'Shoes',
+              slug: '#'
+            },
+            {
+              title: 'Accesories',
+              slug: '#'
+            },
+            {
+              title: 'Face masks',
+              slug: '#'
+            }
+          ],
+          campaigns: [
+            {
+              title: 'SS21',
+              slug: '#'
+            }
+          ],
+          more: [
+            {
+              title: 'Ten Years Young Exclusive',
+              slug: '#'
+            },
+            {
+              title: 'Bobo Choses & Novesta',
+              slug: '#'
+            }
+          ]
         },
         {
-          title: 'Fun',
-          slug: 'fun'
-        },
-        {
-          title: 'Collection',
+          title: 'Fun Collection',
           slug: 'collection',
-          isNew: true
+          isNew: true,
+          thumbnail: 'https://www.bobochoses.com/media/wysiwyg/Miniatura-categoria-web_fun-collection-sales.jpg',
+          categories: [
+            {
+              title: 'Kid',
+              slug: '#'
+            },
+            {
+              title: 'Baby',
+              slug: '#'
+            },
+            {
+              title: 'Woman',
+              slug: '#'
+            },
+            {
+              title: 'Accesories Kid',
+              slug: '#'
+            },
+            {
+              title: 'Accesories Adult',
+              slug: '#'
+            }
+          ]
         },
         {
           title: 'Sale',
           slug: 'sale',
-          isNew: true
+          isNew: true,
+          thumbnail: 'https://www.bobochoses.com/media/wysiwyg/Miniatura-sales.jpg'
         },
         {
           title: 'Magazine',
@@ -180,7 +617,7 @@ export default {
         content: none !important;
       }
       &:hover {
-        color: #999;
+        color: #999 !important;
         background: transparent;
         box-shadow: inset 0 -2px 0 0 #000;
       }
@@ -207,8 +644,20 @@ export default {
   margin: 0 auto;
   opacity: 0;
   visibility: hidden;
-  z-index: -1;
+  z-index: 100;
   transition: all 0.2s ease;
+
+  ul {
+    padding-left: 0;
+    margin: 0;
+    li {
+      font-size: 14px;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
 }
 
 .field-search {
