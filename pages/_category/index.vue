@@ -25,8 +25,8 @@
           <template v-for="index in 16">
             <v-col :key="`product-${index}`" lg="3">
               <ProductCard
-                :link="`/${$route.params.category}/product-${index}`"
-                :price="250000 + index * 1000"
+                :link="`/${$route.params.category}/product-item-${index}`"
+                :price="250000"
                 :name="`Product item #${index}`"
                 img1="https://www.bobochoses.com/media/catalog/product/cache/74597d227604c47a8b641ae794922d30/1/2/121ac149_1.jpg"
                 img2="https://www.bobochoses.com/media/catalog/product/1/2/121ac149_6.jpg"

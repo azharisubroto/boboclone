@@ -1,5 +1,5 @@
 <template>
-  <v-card tile elevation="0">
+  <v-card :to="`/${slug}`" tile elevation="0">
     <v-img :src="img" :aspect-ratio="full == true ? 2560 / 1280 : 1 / 1" :contain="full == true ? true : false">
       <template #default>
         <v-row class="fill-height ma-0" :align="full == true ? 'end' : 'center'" justify="center">
@@ -21,6 +21,10 @@ export default {
       default: ''
     },
     img: {
+      type: String,
+      default: ''
+    },
+    slug: {
       type: String,
       default: ''
     },

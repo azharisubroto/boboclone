@@ -591,7 +591,7 @@ export default {
 <style lang="scss" scoped>
 .mainmenu {
   position: relative;
-  z-index: 10;
+  z-index: 1;
 
   &.is_sticky {
     position: fixed;

@@ -80,7 +80,7 @@ export default {
 <style lang="scss" scoped>
 header {
   position: relative;
-  z-index: 100;
+  z-index: 5;
 }
 .topline {
   border-bottom: 1px solid #000;
