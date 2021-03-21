@@ -40,7 +40,14 @@
                 </div>
                 <div>
                   <v-btn icon @click="$store.commit('ui/sidebar', true)">
-                    <v-icon>mdi-shopping-outline</v-icon>
+                    <v-badge
+                      :content="$store.state.carts.list.length"
+                      :value="$store.state.carts.list.length"
+                      color="error"
+                      overlap
+                    >
+                      <v-icon>mdi-shopping-outline</v-icon>
+                    </v-badge>
                   </v-btn>
                   <div class="mt-0">Bag</div>
                 </div>
