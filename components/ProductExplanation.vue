@@ -9,7 +9,7 @@
       >
       <v-expansion-panel-content>
         <!--  eslint-disable-next-line vue/no-v-html -->
-        <div v-html="item.content"></div>
+        <div class="text" v-html="item.content"></div>
       </v-expansion-panel-content>
     </v-expansion-panel>
   </v-expansion-panels>
@@ -27,3 +27,10 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.text {
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+</style>

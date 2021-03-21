@@ -9,11 +9,13 @@
     <v-spacer></v-spacer>
 
     <!-- Menu items -->
-    <v-toolbar-items class="hidden-sm-and-down">
+    <div class="hidden-sm-and-down">
       <ul v-if="menus.length > 0" class="menu-nav">
         <template v-for="(menu, i) in menus">
           <li :key="`menu-${i}`">
-            <v-btn :to="`/${menu.slug}`" color="transparent" tile depressed max-height="40"> {{ menu.title }} </v-btn>
+            <v-btn :to="`/category/${menu.slug}`" color="transparent" tile depressed max-height="40">
+              {{ menu.title }}
+            </v-btn>
 
             <!-- Mega menu -->
             <template v-if="menu.categories || menu.campaigns || menu.more">
@@ -32,7 +34,18 @@
                               :key="`cat-${j}-${category.title}`"
                               class="mb-2"
                             >
-                              <nuxt-link :to="`/${menu.slug}/${category.slug}`">{{ category.title }}</nuxt-link>
+                              <nuxt-link
+                                :to="`/category/${menu.slug}/${
+                                  category.slug != '#'
+                                    ? category.slug
+                                    : category.title
+                                        .replaceAll(' ', '-')
+                                        .replaceAll('&', '')
+                                        .replaceAll('--', '-')
+                                        .toLowerCase()
+                                }`"
+                                >{{ category.title }}</nuxt-link
+                              >
                             </li>
                           </ul>
                         </template>
@@ -49,7 +62,18 @@
                               :key="`camp-${j}-${campaign.title}`"
                               class="mb-2"
                             >
-                              <nuxt-link :to="`/${menu.slug}/${campaign.slug}`">{{ campaign.title }}</nuxt-link>
+                              <nuxt-link
+                                :to="`/category/${menu.slug}/${
+                                  campaign.slug != '#'
+                                    ? campaign.slug
+                                    : campaign.title
+                                        .replaceAll(' ', '-')
+                                        .replaceAll('&', '')
+                                        .replaceAll('--', '-')
+                                        .toLowerCase()
+                                }`"
+                                >{{ campaign.title }}</nuxt-link
+                              >
                             </li>
                           </ul>
                         </template>
@@ -62,7 +86,14 @@
 
                           <ul>
                             <li v-for="(more, j) in menu.more" :key="`more-${j}-${more.title}`" class="mb-2">
-                              <nuxt-link :to="`/${menu.slug}/${more.slug}`">{{ more.title }}</nuxt-link>
+                              <nuxt-link
+                                :to="`/category/${menu.slug}/${
+                                  more.slug != '#'
+                                    ? more.slug
+                                    : more.title.replaceAll(' ', '-').replaceAll('&', 'and').toLowerCase()
+                                }`"
+                                >{{ more.title }}</nuxt-link
+                              >
                             </li>
                           </ul>
                         </template>
@@ -85,7 +116,7 @@
           </li>
         </template>
       </ul>
-    </v-toolbar-items>
+    </div>
 
     <!-- Spacer -->
     <v-spacer></v-spacer>
@@ -162,57 +193,57 @@ export default {
           categories: [
             {
               title: 'T-shirts',
-              slug: '#'
+              slug: 't-shirts'
             },
             {
               title: 'Sweatshirts',
-              slug: '#'
+              slug: 'sweatshirts'
             },
             {
               title: 'Trousers',
-              slug: '#'
+              slug: 'trousers'
             },
             {
               title: 'Skirts',
-              slug: '#'
+              slug: 'skirts'
             },
             {
               title: 'Dresses',
-              slug: '#'
+              slug: 'dresses'
             },
             {
               title: 'Jumpers & Cardigans',
-              slug: '#'
+              slug: 'jumpers-cardigans'
             },
             {
               title: 'Overall',
-              slug: '#'
+              slug: 'overall'
             },
             {
               title: 'Outerwear',
-              slug: '#'
+              slug: 'outerwear'
             },
             {
               title: 'Footwear',
-              slug: '#'
+              slug: 'footwear'
             },
             {
               title: 'Playsuit',
-              slug: '#'
+              slug: 'playsuit'
             },
             {
               title: 'Swimwear & Summer',
-              slug: '#'
+              slug: 'swimwear'
             },
             {
               title: 'Online Exclusive',
-              slug: '#'
+              slug: 'online-exclusive'
             }
           ],
           campaigns: [
             {
               title: 'SS21',
-              slug: '#'
+              slug: 'ss21'
             }
           ],
           more: [

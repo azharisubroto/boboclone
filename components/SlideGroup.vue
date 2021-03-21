@@ -1,7 +1,7 @@
 <template>
   <v-slide-group v-model="model" class="groupslide" show-arrow center-active>
     <v-slide-item v-for="item in items" :key="item">
-      <v-card width="570" tile elevation="0">
+      <v-card width="558" tile elevation="0">
         <v-img :src="item" :alt="item" :aspect-ratio="3.5 / 4" cover />
       </v-card>
     </v-slide-item>

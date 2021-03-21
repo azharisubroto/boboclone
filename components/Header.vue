@@ -21,7 +21,7 @@
           <v-row justify-lg="end" align-md="center">
             <v-col md="8">
               <v-text-field
-                prepend-inner-icon="mdi-magnify"
+                prepend-icon="mdi-magnify"
                 label="Search"
                 placeholder="Search"
                 background-color="#f5f5f5"
@@ -80,7 +80,7 @@ export default {
 <style lang="scss" scoped>
 header {
   position: relative;
-  z-index: 5;
+  z-index: 300;
 }
 .topline {
   border-bottom: 1px solid #000;

@@ -2,9 +2,24 @@
   <main>
     <section>
       <v-row>
+        <!-- <template v-for="(item, i) in cats">
+          <v-col :key="`category-${item.id}`" :md="isFull(i) ? '12' : '6'">
+            <CategoryItem
+              :title="item.name"
+              :slug="'/category/' + item.slug"
+              :full="isFull(i)"
+              :img="item.image && item.image.url ? $helpers.cdn_img(item.image.url, 150) : img_placeholder"
+            />
+          </v-col>
+        </template> -->
         <template v-for="(item, i) in categories">
-          <v-col :key="`category-${i}`" :md="item.full == true ? '12' : '6'">
-            <CategoryItem :title="item.title" :slug="item.slug" :full="item.full" :img="item.img" />
+          <v-col :key="`category-${item.id}`" :md="isFull(i) ? '12' : '6'">
+            <CategoryItem
+              :title="item.name"
+              :slug="'/category/' + item.slug"
+              :full="isFull(i)"
+              :img="item.image && item.image.url ? $helpers.cdn_img(item.image.url, 150) : item.img"
+            />
           </v-col>
         </template>
       </v-row>
@@ -34,69 +49,93 @@ export default {
     return {
       categories: [
         {
-          title: 'Online Exclusive',
+          name: 'Online Exclusive',
           slug: 'kid/online-exclusive',
           full: true,
           img: '/img/hero-1.jpg'
         },
         {
-          title: 'T-Shirts',
+          name: 'T-Shirts',
           slug: 'kid/online-exclusive',
           full: false,
           img:
             'https://7e7cb2191e43d9e6ba19.ucr.io/-/format/auto/-/quality/lighter/-/resize/685x/https://cdn.dragdropr.com/df8952fa-4673-4c82-b7cc-02928b3df6b9/'
         },
         {
-          title: 'Trousers',
+          name: 'Trousers',
           slug: 'truosers',
           full: false,
           img:
             'https://7e7cb2191e43d9e6ba19.ucr.io/-/format/auto/-/quality/lighter/-/resize/685x/https://cdn.dragdropr.com/cfbb8f25-80ea-43c1-b737-25a1d7f3a5c2/'
         },
         {
-          title: 'Baby Collections',
+          name: 'Baby Collections',
           slug: 'baby-collections',
           full: true,
           img: 'https://cdn.dragdropr.com/d79ede23-82da-4137-9f7d-915cd92a3d3f/'
         },
         {
-          title: 'Baby sets',
+          name: 'Baby sets',
           slug: 'baby-packs',
           full: true,
           img:
             'https://7e7cb2191e43d9e6ba19.ucr.io/-/format/auto/-/quality/lighter/-/resize/1419x/https://cdn.dragdropr.com/e1dcd85c-5f5e-4506-8f6d-ba95c0b45520/'
         },
         {
-          title: 'New Arrivals',
+          name: 'New Arrivals',
           slug: 'new-arrivals/woman',
           full: true,
           img:
             'https://7e7cb2191e43d9e6ba19.ucr.io/-/format/auto/-/quality/lighter/-/resize/1419x/https://cdn.dragdropr.com/0092394c-9045-40ce-bf78-63b7b183961e/'
         },
         {
-          title: 'Dresses',
+          name: 'Dresses',
           slug: 'woman/dresses',
           full: false,
           img:
             'https://7e7cb2191e43d9e6ba19.ucr.io/-/format/auto/-/quality/lighter/-/resize/685x/https://cdn.dragdropr.com/7868819d-647d-4615-bf27-acb22c6be27d/'
         },
         {
-          title: 'T-shirts',
+          name: 'T-shirts',
           slug: 'woman/t-shirts',
           full: false,
           img:
             'https://7e7cb2191e43d9e6ba19.ucr.io/-/format/auto/-/quality/lighter/-/resize/685x/https://cdn.dragdropr.com/51634382-0589-4329-9f50-e058e721c065/'
         },
         {
-          title: 'Kids with Sign',
+          name: 'Kids with Sign',
           slug: 'kidswithsign',
           full: true,
           img:
             'https://7e7cb2191e43d9e6ba19.ucr.io/-/format/auto/-/quality/lighter/-/resize/1419x/https://cdn.dragdropr.com/cbe1cec5-d305-41a3-b685-083a2a743c18/'
         }
-      ]
+      ],
+      cats: [],
+      error: null,
+      img_placeholder: '/img/hero-1.jpg'
     }
   },
-  mounted() {}
+  head() {
+    return {
+      title: 'Sustainable Kids, Baby & Womens clothes & accesories'
+    }
+  },
+  mounted() {
+    this.fetchCategories()
+  },
+  methods: {
+    async fetchCategories() {
+      try {
+        const res = await this.$strapi.find('categories')
+        this.cats = res
+      } catch (error) {
+        // console.log(error)
+      }
+    },
+    isFull(i) {
+      if (i === 0 || i === 3 || i === 4 || i === 5 || i === 8) return true
+      return false
+    }
+  }
 }
 </script>

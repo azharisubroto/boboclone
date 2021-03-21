@@ -8,8 +8,8 @@ export default {
   },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - boboclone',
-    title: 'boboclone',
+    titleTemplate: `%s - ${process.env.SITE_TITLE}`,
+    title: process.env.SITE_TITLE,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -18,18 +18,24 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
+  env: {
+    BASE_URL: process.env.BASE_URL || 'https://boboclone.netlify.app',
+    SITE_TITLE: process.env.SITE_TITLE || 'Bobo Clone',
+    EMAIL: process.env.EMAIL || 'info@boboclone.com',
+    API_URL: process.env.API_URL
+  },
+
+  // Strapi
+  strapi: {
+    entities: ['products', 'categories'],
+    url: process.env.API_URL
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-    // Load a Node.js module directly (here it's a Sass file)
-    // 'bulma',
-    // CSS file in the project
-    // '@/assets/css/main.css',
-    // SCSS file in the project
-    '@/assets/main.scss'
-  ],
+  css: ['@/assets/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [{ src: '~/plugins/helpers.js' }],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -47,7 +53,8 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    '@nuxtjs/strapi'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
