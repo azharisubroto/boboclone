@@ -15,8 +15,8 @@
           <v-btn
             v-for="(size, i) in data.itemsizes"
             :key="`size-${i}-${size.size_short_name}`"
+            :outlined="chosensize !== size.size_short_name"
             rounded
-            outlined
             depressed
             dark
             color="#9bcfbd"
@@ -25,6 +25,7 @@
             min-height="42"
             max-height="42"
             class="mr-2"
+            @click="chosensize = size.size_short_name"
           >
             <span class="fs-12">{{ size.size_short_name }}</span>
           </v-btn>
@@ -78,7 +79,8 @@ export default {
   data() {
     return {
       drawer: false,
-      cartitems: []
+      cartitems: [],
+      chosensize: ''
     }
   },
   methods: {

@@ -75,6 +75,10 @@ export default {
       default() {
         return []
       }
+    },
+    slug: {
+      type: String,
+      default: ''
     }
   },
   data() {
@@ -86,7 +90,7 @@ export default {
   },
   head() {
     return {
-      title: `${this.$route.params.category} Collection`,
+      title: `${this.slug} Collection`,
       products: []
     }
   },
@@ -101,7 +105,7 @@ export default {
       try {
         const res = await this.$strapi.find('products', {
           _sort: 'created_at:desc',
-          'categories.slug': [this.$route.params.category]
+          'categories.slug': [this.slug]
         })
         this.products = res
       } catch {

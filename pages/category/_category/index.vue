@@ -1,6 +1,6 @@
 <template>
   <main>
-    <CategoryPage :breadcrumbs="breadcrumbs" />
+    <CategoryPage :breadcrumbs="breadcrumbs" :slug="$route.params.category" />
   </main>
 </template>
 
