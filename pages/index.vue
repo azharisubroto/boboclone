@@ -40,7 +40,7 @@ export default {
       categories: [
         {
           name: 'Online Exclusive',
-          slug: 'kid/online-exclusive',
+          slug: 'kid',
           full: true,
           img: '/img/hero-1.jpg'
         },
