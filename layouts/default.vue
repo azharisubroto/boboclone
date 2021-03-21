@@ -10,6 +10,26 @@
 
     <!-- Footer -->
     <Footer />
+
+    <!-- Add to Cart -->
+    <v-navigation-drawer
+      v-model="$store.state.ui.cartsidebar"
+      style="z-index: 1000"
+      class="cart-drawer"
+      fixed
+      right
+      width="506"
+      :stateless="true"
+    >
+      <div class="px-5 py-4" style="height: 100%">
+        <div class="text-right">
+          <v-btn icon @click="$store.commit('ui/sidebar', false)">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
+        </div>
+        <SidebarCart />
+      </div>
+    </v-navigation-drawer>
   </v-app>
 </template>
 
@@ -22,7 +42,6 @@ export default {
   data() {
     return {
       clipped: false,
-      drawer: false,
       fixed: false,
       items: [
         {

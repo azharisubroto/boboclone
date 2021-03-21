@@ -39,7 +39,7 @@
                   <div class="mt-0">Login</div>
                 </div>
                 <div>
-                  <v-btn icon>
+                  <v-btn icon @click="$store.commit('ui/sidebar', true)">
                     <v-icon>mdi-shopping-outline</v-icon>
                   </v-btn>
                   <div class="mt-0">Bag</div>

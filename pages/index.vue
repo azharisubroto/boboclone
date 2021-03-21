@@ -2,16 +2,6 @@
   <main>
     <section>
       <v-row>
-        <!-- <template v-for="(item, i) in cats">
-          <v-col :key="`category-${item.id}`" :md="isFull(i) ? '12' : '6'">
-            <CategoryItem
-              :title="item.name"
-              :slug="'/category/' + item.slug"
-              :full="isFull(i)"
-              :img="item.image && item.image.url ? $helpers.cdn_img(item.image.url, 150) : img_placeholder"
-            />
-          </v-col>
-        </template> -->
         <template v-for="(item, i) in categories">
           <v-col :key="`category-${item.id}`" :md="isFull(i) ? '12' : '6'">
             <CategoryItem

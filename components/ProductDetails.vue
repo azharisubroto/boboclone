@@ -37,37 +37,29 @@
     <div class="mb-5">
       <v-row no-gutters>
         <v-col md="9" class="pr-1">
-          <v-btn dark block depressed x-large color="#000" @click="addToCart()"> Add to Cart </v-btn>
+          <v-btn
+            :disabled="chosensize == ''"
+            :dark="chosensize != ''"
+            :color="chosensize != '' ? '#000' : ''"
+            block
+            depressed
+            x-large
+            @click="addToCart()"
+          >
+            Add to Cart
+          </v-btn>
         </v-col>
         <v-col md="2">
           <v-btn block outlined x-large color="#000"> <v-icon>mdi-star-outline</v-icon> </v-btn>
         </v-col>
       </v-row>
     </div>
-
-    <!-- Add to Cart -->
-    <v-navigation-drawer v-model="drawer" style="z-index: 1000" class="cart-drawer" fixed right width="506" temporary>
-      <div class="px-5 py-4" style="height: 100%">
-        <div class="text-right">
-          <v-btn icon @click="drawer = !drawer">
-            <v-icon>mdi-close</v-icon>
-          </v-btn>
-        </div>
-        <SidebarCart :items="cartitems" />
-      </div>
-    </v-navigation-drawer>
   </div>
 </template>
 
 <script>
-import SidebarCart from '@/components/SidebarCart'
-import { mapMutations } from 'vuex'
-
 export default {
   name: 'ProductDetails',
-  components: {
-    SidebarCart
-  },
   props: {
     data: {
       type: Object,
@@ -85,15 +77,19 @@ export default {
   },
   methods: {
     addToCart() {
-      this.drawer = true
+      const data = this.data
+      const vm = this
+      this.$store.commit('ui/sidebar', true)
       this.$store.commit('carts/add', {
-        title: this.$route.params.slug,
-        price: 250000
+        id: data.id,
+        title: data.title,
+        slug: data.slug,
+        price: data.price,
+        image: data.image[0].formats.thumbnail.url,
+        amount: 1,
+        size: vm.chosensize
       })
-    },
-    ...mapMutations({
-      toggle: 'carts/toggle'
-    })
+    }
   }
 }
 </script>
