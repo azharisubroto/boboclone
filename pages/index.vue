@@ -2,13 +2,13 @@
   <main>
     <section>
       <v-row>
-        <template v-for="(item, i) in categories">
-          <v-col :key="`category-${item.id}`" :md="isFull(i) ? '12' : '6'">
+        <template v-for="(item, i) in cats">
+          <v-col :key="`category-${i}`" :md="isFull(i) ? '12' : '6'">
             <CategoryItem
-              :title="item.name"
-              :slug="'/category/' + item.slug"
+              :title="item.category.name"
+              :slug="'/category/' + item.category.slug"
               :full="isFull(i)"
-              :img="item.image && item.image.url ? $helpers.cdn_img(item.image.url, 150) : item.img"
+              :img="$helpers.cdn_img(item.banner_image.url)"
             />
           </v-col>
         </template>
@@ -116,8 +116,8 @@ export default {
   methods: {
     async fetchCategories() {
       try {
-        const res = await this.$strapi.find('categories')
-        this.cats = res
+        const res = await this.$strapi.find('home-page')
+        this.cats = res.banners_list
       } catch (error) {
         // console.log(error)
       }

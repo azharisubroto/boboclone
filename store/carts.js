@@ -25,7 +25,8 @@ export const mutations = {
   },
   setamount(state, obj) {
     const index = state.list.findIndex((p) => p.id === obj.id)
-    state.list[index].amount = parseInt(obj.amount)
+    const amount = parseInt(obj.amount)
+    state.list[index].amount = amount < 1 ? 1 : amount
   },
   remove(state, cart) {
     state.list = state.list.filter((item) => item.id !== cart.id)
