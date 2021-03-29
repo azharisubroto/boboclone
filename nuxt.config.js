@@ -3,6 +3,10 @@ import colors from 'vuetify/es5/util/colors'
 export default {
   target: 'static',
   ssr: false,
+  server: {
+    host: '0.0.0.0',
+    port: 3200
+  },
   generate: {
     fallback: true
   },
@@ -22,13 +26,19 @@ export default {
     BASE_URL: process.env.BASE_URL || 'https://boboclone.netlify.app',
     SITE_TITLE: process.env.SITE_TITLE || 'Bobo Clone',
     EMAIL: process.env.EMAIL || 'info@boboclone.com',
-    API_URL: process.env.API_URL
+    API_URL: process.env.API_URL,
+    API_LOCAL: process.env.API_LOCAL
   },
 
   // Strapi
   strapi: {
     entities: ['products', 'categories'],
     url: process.env.API_URL
+  },
+
+  // Server middleware
+  serverMiddleware: {
+    '/api': '~/api'
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -58,7 +68,9 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: `${process.env.API_LOCAL}/`
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

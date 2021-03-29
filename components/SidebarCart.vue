@@ -1,7 +1,6 @@
 <template>
   <div style="padding-bottom: 158px">
     <div class="mt-10">
-      <!-- <pre class="fs-10">{{ carts }}</pre> -->
       <template v-if="carts && carts.length > 0">
         <v-card
           v-for="item in carts"
@@ -84,7 +83,9 @@
         </v-row>
       </v-card>
 
-      <v-btn x-large dark color="#000" class="mb-4" block> Checkout </v-btn>
+      <v-btn to="/checkout" x-large dark color="#000" class="mb-4" block @click="$store.commit('ui/sidebar', false)">
+        Checkout
+      </v-btn>
     </div>
   </div>
 </template>
@@ -124,7 +125,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .rincian {
   position: absolute;
   bottom: 0;

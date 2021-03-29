@@ -23,6 +23,9 @@ export const mutations = {
       state.list[index].amount--
     }
   },
+  reset(state) {
+    state.list = []
+  },
   setamount(state, obj) {
     const index = state.list.findIndex((p) => p.id === obj.id)
     const amount = parseInt(obj.amount)
