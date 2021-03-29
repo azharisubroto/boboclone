@@ -202,19 +202,19 @@ export default {
   methods: {
     async getProvince() {
       try {
-        const data = await this.$axios.$get(`${process.env.API_LOCAL}/api/provinces`)
+        const data = await this.$axios.$get(`/api/provinces`)
         this.province_list = data.rajaongkir.results
       } catch (error) {}
     },
     async getCities(prov) {
       try {
-        const data = await this.$axios.$get(`${process.env.API_LOCAL}/api/cities/${prov.province_id}`)
+        const data = await this.$axios.$get(`/api/cities/${prov.province_id}`)
         this.city_list = data.rajaongkir.results
       } catch (error) {}
     },
     async cekOngkir(city) {
       try {
-        const data = await this.$axios.$get(`${process.env.API_LOCAL}/api/cekongkir/${city.city_id}`)
+        const data = await this.$axios.$get(`/api/cekongkir/${city.city_id}`)
         this.shipping_list = data.rajaongkir.results[0].costs
       } catch (error) {}
     },
